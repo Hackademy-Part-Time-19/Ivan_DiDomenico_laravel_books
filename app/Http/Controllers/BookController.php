@@ -42,8 +42,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $books = Book::all();
-        return view('books.show',['libri'=>$books[$id]]);
+        $books = Book::find($id);
+        return view('books.show',compact('books'));
     }
 
     /**
@@ -51,15 +51,21 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $books = Book::find($id); 
+        return view('books.edit',compact('books'));
+       
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreBookRequest $request, string $id)
     {
-        return view('books.update');
+        $validated = $request->validated();
+        $books = Book::find($id);
+        $books->update($validated);
+
+       return redirect()->back()->with('success','Libro modificato correttamente');
     }
 
     /**
@@ -67,6 +73,8 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
+        return redirect()->back()->with('success','Libro eliminato correttamente.');
     }
 }

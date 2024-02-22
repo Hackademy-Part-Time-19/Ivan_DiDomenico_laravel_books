@@ -16,10 +16,10 @@
             <a class="nav-link" href="{{route('books.create')}}">Inserisci un libro</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Registrati</a>
+            <a class="nav-link" href="/register">Registrati</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Accedi</a>
+            <a class="nav-link" href="/login">Accedi</a>
           </li>
          
         </ul>
